@@ -6,7 +6,6 @@
 int main(int argc, char *argv[]) {
 
     CURL *curl = curl_easy_init();
-
     std::string url;
 
     if (argc < 2) {
@@ -20,7 +19,7 @@ int main(int argc, char *argv[]) {
 
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
         curl_easy_setopt(curl, CURLOPT_NOBODY, 1);
-
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, false);
         std::promise<CURLcode> promise;
 
         auto response = promise.get_future();
